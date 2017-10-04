@@ -8,5 +8,14 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "pg": "^7.3.0",
+    "bcrypt": "^1.0.2",
+    "express-session": "^1.15.4",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  }
 }
