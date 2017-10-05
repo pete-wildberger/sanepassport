@@ -4,7 +4,10 @@ path = require('path'),
 bodyParser = require('body-parser'),
 port = process.env.PORT || 8080,
 passport = require('./strategies/user.strategy'),
-session = require('express-session')
+session = require('express-session'),
+  auth = require('./routes/auth'),
+isLoggedIn = require('./utils/auth'),
+private = require('./routes/private/index'),
 index = require('./routes/index');
 
 //uses
@@ -28,6 +31,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routes
+app.use('/auth', auth);
+app.use('/private', isLoggedIn, private);
 app.use('/', index);
 
 app.listen(port, function() {
