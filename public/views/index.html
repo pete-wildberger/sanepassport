@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>sanepassport</title>
+  <!-- Vendors -->
+  <script src="vendors/angular.min.js" charset="utf-8"></script>
+  <script src="vendors/angular-route.min.js" charset="utf-8"></script>
+  <!-- JS -->
+  <script src="scripts/app.js" charset="utf-8"></script>
+  <!-- Controllers -->
+  <script src="scripts/controllers/IndexController.js" charset="utf-8"></script>
+  <script src="scripts/controllers/AuthController.js" charset="utf-8"></script>
+  <!-- Services -->
+  <script src="scripts/services/http.Service.js" charset="utf-8"></script>
+  <script src="scripts/services/authFactory.js" charset="utf-8"></script>
+  <base href="/">
+</head>
+
+<body ng-app="myApp" ng-cloak>
+  <div ng-controller="IndexController as ic">
+    <h1>Hello</h1>
+    <ng-view>
+
+    </ng-view>
+  </div>
+</body>
+
+</html>

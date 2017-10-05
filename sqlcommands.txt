@@ -1,7 +1,6 @@
 CREATE TABLE users;
 CREATE TABLE users (
-    id int,
-    LastName varchar(255),
-    FirstName varchar(255),
+    id int PRIMARY KEY,
+    userEmail varchar(255),
     hashed varchar(255)
     );
