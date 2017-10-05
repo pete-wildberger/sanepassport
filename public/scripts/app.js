@@ -5,6 +5,11 @@ router.$inject = ['$routeProvider', '$locationProvider'];
 function router($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
+      templateUrl: '/views/partials/login.html',
+      controller: 'AuthController as ac',
+      controllerAs: 'ac'
+    })
+    .when('/welcome', {
       templateUrl: '/views/partials/welcome.html',
       controller: 'IndexController as ic',
       controllerAs: 'ic'
