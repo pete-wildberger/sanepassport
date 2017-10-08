@@ -1,45 +1,64 @@
-const express = require('express'),
-app = express(),
-path = require('path'),
-bodyParser = require('body-parser'),
-port = process.env.PORT || 8080,
-passport = require('./strategies/user.strategy'),
-session = require('express-session'),
-  auth = require('./routes/auth'),
-isLoggedIn = require('./utils/auth'),
-private = require('./routes/private/index'),
-index = require('./routes/index');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const login = require('./routes/login');
+const register = require('./routes/register');
+const auth = require('./auth/setup');
+const passport = require('passport');
+const session = require('express-session');
 
-//uses
-app.use(express.static('public'));
 
+auth.setup();
+
+const sessionConfig = {
+  secret: 'super secret key goes here', // TODO this should be read from ENV
+  key: 'user',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 30 * 60 * 1000,
+    secure: false
+  }
+};
+
+
+// auth.setup();
+
+const app = express();
+
+
+app.use(session(sessionConfig));
 app.use(bodyParser.json());
-
-
-app.use(session({
-	secret: 'secret',
-	key: 'user', // this is the name of the req.variable. 'user' is convention, but not required
-	resave: 'true',
-	saveUninitialized: false,
-	cookie: {
-		maxage: 60000,
-		secure: false
-	}
-}));
-
+app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// routes
-app.use('/auth', auth);
-app.use('/private', isLoggedIn, private);
-app.use('/', index);
+app.use('/login', login);
+app.use('/register', register);
 
-app.listen(port, function() {
-	console.log('Listening on port:', port);
-}); //
-app.use(function(req, res) {
-  res.sendFile('index.html', {
-    root: 'public/views/'
-  });
+app.get('/', function(req, res){
+  res.sendFile(path.join(__dirname, 'public/views/index.html'));
+});
+
+// everything beyond this point must be authenticated
+app.use(ensureAuthenticated);
+
+app.get('/supersecret', function(req, res){
+  res.send('the password is banana');
+});
+
+app.get('/*', function(req, res){
+  res.sendFile(path.join(__dirname, 'public/views/index.html'));
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.sendStatus(401);
+  }
+}
+
+var server = app.listen(3000, function() {
+  console.log('Listening on port', server.address().port);
 });

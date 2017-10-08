@@ -1,30 +1,21 @@
 <!DOCTYPE html>
-<html>
-
+<html ng-app="passportApp">
 <head>
   <meta charset="utf-8">
-  <title>sanepassport</title>
-  <!-- Vendors -->
+  <title>Passport</title>
+
+  <link rel="stylesheet" href="vendors/bootstrap.min.css" media="screen" title="no title">
   <script src="vendors/angular.min.js" charset="utf-8"></script>
   <script src="vendors/angular-route.min.js" charset="utf-8"></script>
-  <!-- JS -->
-  <script src="scripts/app.js" charset="utf-8"></script>
-  <!-- Controllers -->
-  <script src="scripts/controllers/IndexController.js" charset="utf-8"></script>
-  <script src="scripts/controllers/AuthController.js" charset="utf-8"></script>
-  <!-- Services -->
-  <script src="scripts/services/http.Service.js" charset="utf-8"></script>
-  <script src="scripts/services/authFactory.js" charset="utf-8"></script>
-  <base href="/">
+
+  <script src="scripts/app.module.js" charset="utf-8"></script>
+  <script src="scripts/login.controller.js" charset="utf-8"></script>
+  <script src="scripts/register.controller.js" charset="utf-8"></script>
+  <script src="scripts/app.config.js" charset="utf-8"></script>
+
+  <base href="/" />
 </head>
-
-<body ng-app="myApp" ng-cloak>
-  <div ng-controller="IndexController as ic">
-    <h1>Hello</h1>
-    <ng-view>
-
-    </ng-view>
-  </div>
+<body class="container">
+  <ng-view></ng-view>
 </body>
-
 </html>
