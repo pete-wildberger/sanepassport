@@ -1,6 +1,17 @@
 CREATE TABLE users;
 CREATE TABLE users (
     id int PRIMARY KEY,
-    userEmail varchar(255),
-    hashed varchar(255)
+    username varchar(255),
+    password varchar(255)
     );
+
+Post:
+INSERT INTO table (props) VALUES (values);
+
+put:
+UPDATE table
+SET prop = value
+WHERE id = value;
+
+delete:
+DELETE FROM table WHERE props;

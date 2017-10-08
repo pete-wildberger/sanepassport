@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html ng-app="passportApp">
+
 <head>
   <meta charset="utf-8">
   <title>Passport</title>
 
-  <link rel="stylesheet" href="vendors/bootstrap.min.css" media="screen" title="no title">
+  <link rel="stylesheet" href="/styles/main.min.css">
   <script src="vendors/angular.min.js" charset="utf-8"></script>
   <script src="vendors/angular-route.min.js" charset="utf-8"></script>
 
   <script src="scripts/app.module.js" charset="utf-8"></script>
-  <script src="scripts/login.controller.js" charset="utf-8"></script>
-  <script src="scripts/register.controller.js" charset="utf-8"></script>
   <script src="scripts/app.config.js" charset="utf-8"></script>
+  <script src="scripts/controllers/login.controller.js" charset="utf-8"></script>
+  <script src="scripts/controllers/register.controller.js" charset="utf-8"></script>
+  <script src="scripts/services/http.Service.js" charset="utf-8"></script>
+
 
   <base href="/" />
 </head>
-<body class="container">
-  <ng-view></ng-view>
+
+<body ng-app="passportApp">
+
+  <main class="row">
+
+    <ng-view></ng-view>
+
+  </main>
+
 </body>
+
 </html>

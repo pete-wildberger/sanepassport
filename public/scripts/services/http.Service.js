@@ -1,4 +1,4 @@
-angular.module('myApp')
+angular.module('passportApp')
 .service('httpService', httpService);
 httpService.$inject = ['$http'];
 function httpService($http) {
